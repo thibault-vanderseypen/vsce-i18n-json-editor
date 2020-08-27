@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{LINKS}}
+    {{SCRIPTS}}
+    <title>i18n-json-editor</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-light ">
+        <form class="form-inline  mr-auto">
+
+            <input class="form-control" style="width:400px" oninput="search(this)" type="search" placeholder="Search..." aria-label="Search...">
+
+        </form>
+        <form class="form-inline">
+            <button type="button" class="btn btn-vscode mr-2" onclick="save()"><i class="icon-floppy"></i> Save</button>
+            <button type="button" class="btn btn btn-vscode mr-2" onclick="add()"><i class="icon-plus-squared"></i> Add</button>
+            <button type="button" class="btn btn-vscode" onclick="switchView()"><i id="icon-switch-view" class="icon-list-bullet"></i></button>
+        </form>
+    </nav>
+    <div id="content-view" class="p-2">
+        <div class="text-center">Loading...</div>
+    </div>
+</body>
+
+</html>

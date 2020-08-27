@@ -1,0 +1,116 @@
+body {
+    background-color: var(--vscode-editor-background);
+    font-family: var(--vscode-font-family);
+    font-size: var(--vscode-font-size);
+    font-weight: var(--vscode-font-weight);
+    color: var(--vscode-editor-foreground);
+}
+
+::placeholder {
+    color: var(--vscode-input-placeholderForeground) !important;
+}
+
+table,
+tr,
+td,
+th {
+    color: var(--vscode-editor-foreground);
+}
+
+th {
+    border-bottom: 1px solid var(--vscode-input-background) !important;
+}
+
+.form-control {
+    background-color: var(--vscode-input-background);
+    border: 0;
+    color: var(--vscode-input-foreground);
+}
+
+.form-control:focus{
+    background-color: var(--vscode-input-background);
+    border: 0;
+    color: var(--vscode-input-foreground);
+    box-shadow: 0 0 0 0.2rem var(--vscode-inputOption-activeBorder);
+}
+
+.form-control.is-invalid {
+    background-image: none !important;
+    color: var(--vscode-errorForeground);
+}
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 0 0.2rem var(--vscode-errorForeground) !important;
+}
+.btn-vscode {
+    background-color: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+}
+
+.btn-vscode:hover {
+    background-color: var(--vscode-button-hoverBackground);
+}
+
+.btn-vscode-secondary {
+    background-color: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+}
+
+.btn-vscode-secondary:hover {
+    background-color: var(--vscode-button-secondaryHoverBackground);
+}
+
+.btn-vscode:active,
+.btn-vscode:focus {
+    box-shadow: 0 0 0 0.2rem var(--vscode-inputOption-activeBorder) !important;
+}
+
+.page-item.disabled .page-link {
+    background-color: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    opacity: 0.5;
+    margin: 0px;
+}
+
+.page-link {
+    background-color: var(--vscode-button-background) !important;
+    color: var(--vscode-button-foreground) !important;
+    border: 0 !important;
+}
+
+.page-link:hover {
+    background-color: var(--vscode-button-hoverBackground) !important;
+}
+
+.page-link:active,
+.page-link:focus {
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem var(--vscode-inputOption-activeBorder) !important;
+}
+
+.error-vscode {
+    color: var(--vscode-errorForeground);
+}
+
+.list-group-item {
+    font-size: 12px;
+    background-color: var(--vscode-button-background) !important;
+    color: var(--vscode-button-foreground) !important;
+    opacity: 0.5;
+    border: 0;
+}
+
+.list-group-item:hover {
+    opacity: 1;
+}
+
+.list-group-item:focus {
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: 0 !important;
+}
+
+.list-group-item.active {
+    opacity: 1;
+    border: 0;
+}

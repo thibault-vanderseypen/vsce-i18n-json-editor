@@ -1,0 +1,8 @@
+
+.icon-up-open:before { content: '\e801'; } /* '' */
+.icon-down-open:before { content: '\e802'; } /* '' */
+.icon-trash-empty:before { content: '\e803'; } /* '' */
+.icon-floppy:before { content: '\e804'; } /* '' */
+.icon-list-bullet:before { content: '\f0ca'; } /* '' */
+.icon-table:before { content: '\f0ce'; } /* '' */
+.icon-plus-squared:before { content: '\f0fe'; } /* '' */

@@ -1,0 +1,8 @@
+{
+  "HELLO": "Bonjour",
+  "TEST": {
+    "A": "Test",
+    "B": "Test\nTest 2\nTest 3"
+  },
+  "WORLD": "Monde"
+}
