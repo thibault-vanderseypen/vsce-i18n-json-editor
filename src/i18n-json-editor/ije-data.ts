@@ -105,6 +105,14 @@ export class IJEData {
         this._manager.refreshDataTable();
     }
 
+
+    pageSize(pageSize: number) {
+        if (pageSize > 0 && pageSize % 10 === 0) {
+            this._page.pageSize = pageSize;
+            this._manager.refreshDataTable();
+        }
+    }
+
     render() {
         let render = '';
         let translations = this._getDisplayedTranslations();
@@ -297,13 +305,12 @@ export class IJEData {
     };
 
     private _getDisplayedTranslations(): IJEDataTranslation[] {
-        var regex = new RegExp(`${this._searchPattern}`, "gi");
-
         var o = this._translations
             .filter(
                 t => {
                     let match = false;
-                    match = regex.test(t.key);
+                    var regex = new RegExp(`${this._searchPattern}`, "gmi");
+                    match = t.key === '' || regex.test(t.key);
                     if (!match) {
                         this._languages.forEach(language => {
                             var content = t.languages[language] ? t.languages[language] : '';
@@ -330,7 +337,7 @@ export class IJEData {
             );
 
         this._page.count = o.length;
-        this._page.pageSize = this._view.type === IJEViewType.LIST ? 15 : 10;
+        this._page.pageSize = this._view.type === IJEViewType.LIST ? 15 : this._page.pageSize;
         this._page.totalPages = Math.ceil(this._page.count / this._page.pageSize);
 
         if (this._page.pageNumber < 1) {

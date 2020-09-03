@@ -4,10 +4,11 @@ import { IJESort } from "./models/ije-sort";
 
 export class IJEDataRenderUtil {
 
-    static renderPagination(translations: IJEDataTranslation[], page: IJEPage) {
-        let render = '<div class="container-fluid mt-2">';
+    static renderPagination(translations: IJEDataTranslation[], page: IJEPage, withPageSizeSelector: boolean = true) {
+        let render = '<div class="container-fluid">';
         render += '<div class="row">';
         render += '<div class="col-4">';
+        render += '<div class="mt-3">';
         if (page.count == 0) {
             render += '0 ';
         } else {
@@ -16,9 +17,18 @@ export class IJEDataRenderUtil {
         }
         render += `of ${page.count}`;
         render += '</div>';
+        render += '</div>';
         render += '<div class="col-8">';
         render += '<div class="float-right">';
-        render += '<nav>';
+        render += '<div class="form-inline">';
+        if (withPageSizeSelector) {
+            render += '<select class="form-control form-control-sm mr-4" style="height: 32px;" onchange="pageSize(this)">';
+            [10, 20, 50, 100].forEach(i => {
+                render += `<option value="${i}" ${i === page.pageSize ? 'selected="selected"' : ""}>${i}</option>`;
+            });
+            render += ' </select>';
+        }
+        render += '<nav class="mt-3">';
         render += '<ul class="pagination justify-content-center">';
         render += `<li class="page-item ${page.pageNumber <= 1 ? 'disabled' : ''}"><a class="page-link" href="#" onclick="navigate(1)">|<</a></li>`;
         render += `<li class="page-item ${page.pageNumber - 1 < 1 ? 'disabled' : ''}"><a class="page-link" href="#" onclick="navigate(${page.pageNumber - 1})"><</a></li>`;
@@ -26,6 +36,7 @@ export class IJEDataRenderUtil {
         render += `<li class="page-item ${page.pageNumber >= page.totalPages ? 'disabled' : ''}"><a class="page-link" href="#" onclick="navigate(${page.totalPages})">>|</a></li>`;
         render += '</ul>';
         render += '</nav>';
+        render += '</div>';
         render += '</div>';
         render += '</div>';
         render += '</div>';
@@ -95,7 +106,7 @@ export class IJEDataRenderUtil {
             render += `<a href="#" id="select-key-${t.id}" onclick="select(${t.id})" class="btn-vscode-secondary list-group-item list-group-item-action ${selectTranslation && selectTranslation.id == t.id ? 'active' : ''}">${t.key === '' ? '&nbsp;' : t.key}</a>`;
         });
         render += '</div>';
-        render += this.renderPagination(translations, page);
+        render += this.renderPagination(translations, page, false);
         render += '</div>';
 
         render += '<div class="col-7">';
@@ -124,7 +135,7 @@ export class IJEDataRenderUtil {
                 render += '</textarea>';
             });
         }
-        
+
         render += '</div>';
         render += '</div>';
         render += '</div>';

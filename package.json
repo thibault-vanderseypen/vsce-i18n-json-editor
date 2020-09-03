@@ -9,8 +9,8 @@
 	"repository": {
 		"url": "https://github.com/thibault-vanderseypen/vsce-i18n-json-editor.git"
 	},
-	"description": "Edit easily i18n translations files",
-	"version": "1.0.0",
+	"description": "Easily edit your i18n json files",
+	"version": "1.1.1",
 	"engines": {
 		"vscode": "^1.30.0"
 	},

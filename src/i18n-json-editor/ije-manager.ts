@@ -22,6 +22,7 @@ export class IJEManager {
                     case 'add': this._data.add(); return;
                     case 'mark': this._data.mark(message.id); return;
                     case 'navigate': this._data.navigate(message.page); return;
+                    case 'pageSize': this._data.pageSize(+message.value); return;
                     case 'refresh': this.refreshDataTable(); return;
                     case 'remove': this._data.remove(message.id); return;
                     case 'save': this._data.save(); vscode.window.showInformationMessage('i18n files saved'); return;

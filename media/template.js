@@ -46,6 +46,14 @@ function navigate(page) {
     });
 }
 
+function pageSize(el) {
+    vscode.postMessage({
+        command: 'pageSize',
+        value: el.value
+    })
+}
+
+
 function refresh() {
     vscode.postMessage({
         command: 'refresh'
