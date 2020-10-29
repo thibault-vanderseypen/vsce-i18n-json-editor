@@ -9,8 +9,9 @@ export class IJEManager {
 
     private _data: IJEData;
 
-    constructor(private _context: vscode.ExtensionContext, private _panel: vscode.WebviewPanel, public dirPath: string) {
-        this._data = new IJEData(this);
+    constructor(private _context: vscode.ExtensionContext, private _configuration: vscode.WorkspaceConfiguration, private _panel: vscode.WebviewPanel, public dirPath: string) {
+        const forceKeyUppercase = _configuration.get<boolean>('i18nJsonEditor.forceKeyUPPERCASE');
+        this._data = new IJEData(this, forceKeyUppercase != undefined ? forceKeyUppercase : true);
         this._initEvents();
         _panel.webview.html = this.getTemplate();
     }

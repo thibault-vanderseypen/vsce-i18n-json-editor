@@ -1,6 +1,6 @@
 {
 	"name": "i18n-json-editor",
-	"displayName": "i18n JSON Editor",
+	"displayName": "i18n json editor",
 	"author": {
 		"name": "Thibault Vanderseypen",
 		"url": "https://vanderseypen.dev"
@@ -10,7 +10,7 @@
 		"url": "https://github.com/thibault-vanderseypen/vsce-i18n-json-editor.git"
 	},
 	"description": "Easily edit your i18n json files",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
@@ -25,7 +25,7 @@
 		"commands": [
 			{
 				"command": "i18n-json-editor",
-				"title": "i18n JSON Editor"
+				"title": "i18n json editor"
 			}
 		],
 		"menus": {
@@ -36,6 +36,17 @@
 					"when": "explorerResourceIsFolder && resourceFilename =~ /i18n/"
 				}
 			]
+		},
+		"configuration": {
+			"title": "i18n json editor",
+			"properties": {
+			  "i18nJsonEditor.forceKeyUPPERCASE": {
+					"default": true,
+					"type": "boolean",
+					"description": "Force the keys to uppercase"
+			
+			  }
+			}
 		}
 	},
 	"scripts": {

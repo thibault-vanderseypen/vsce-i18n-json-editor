@@ -20,10 +20,13 @@ export class IJEData {
     private _page: IJEPage;
     private _sort: IJESort;
 
+    private _forceKeyUppercase = true;
+
     get languages() { return this.languages; }
     get translations() { return this._translations; }
 
-    constructor(private _manager: IJEManager) {
+    constructor(private _manager: IJEManager, forceKeyUppercase = true) {
+        this._forceKeyUppercase = forceKeyUppercase;
         this._loadFiles();
         this._defaultValues();
     }
@@ -90,7 +93,8 @@ export class IJEData {
         const translation = this._createFactoryIJEDataTranslation();
         this._insert(translation);
         this._view.selectionId = translation.id;
-        this.sort('KEY', true, true);
+        this._manager.refreshDataTable();
+        // this.sort('KEY', true, true);
     }
 
     mark(id: number) {
@@ -188,7 +192,7 @@ export class IJEData {
                 translation.languages[language] = value.replace(/\\n/g, '\n');
                 this._validate(translation);
             } else {
-                const newKey = value.toUpperCase();
+                const newKey = this._forceKeyUppercase ? value.toUpperCase() : value;
                 const oldKey = translation.key;
 
                 translation.key = newKey;
