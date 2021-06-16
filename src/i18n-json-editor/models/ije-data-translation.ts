@@ -1,7 +1,8 @@
 export interface IJEDataTranslation {
-    id: number;
-    key: string,
-    valid: boolean,
-    error: string,
-    languages: { [language: string]: string; }
+  id: number;
+  folder: string;
+  key: string;
+  valid: boolean;
+  error: string;
+  languages: { [language: string]: string };
 }

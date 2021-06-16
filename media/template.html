@@ -12,7 +12,9 @@
 <body>
     <nav class="navbar navbar-light ">
         <form class="form-inline  mr-auto">
-
+            <select id="select-folder" class="form-control mr-2" style="display: none;" onchange="filterFolder(this)">
+                <option value='*'>*</option>
+           </select>            
             <input class="form-control" style="width:400px" oninput="search(this)" type="search" placeholder="Search..." aria-label="Search...">
 
         </form>

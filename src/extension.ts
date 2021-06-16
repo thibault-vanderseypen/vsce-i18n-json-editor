@@ -1,28 +1,18 @@
-import * as vscode from 'vscode';
-import * as _path from 'path';
+import * as vscode from "vscode";
+import * as _path from "path";
 
-import { IJEManager } from './i18n-json-editor/ije-manager';
+import { IJEManager } from "./i18n-json-editor/ije-manager";
+import { IJEEditorProvider } from "./i18n-json-editor/ije-editor-provider";
+import { IJEConfiguration } from "./i18n-json-editor/ije-configuration";
 
 export function activate(context: vscode.ExtensionContext) {
-	context.subscriptions.push(
-		vscode.commands.registerCommand('i18n-json-editor', (uri: vscode.Uri) => {
 
-			const panel = vscode.window.createWebviewPanel(
-				'i18n-json-editor',
-				'i18n-json-editor',
-				vscode.ViewColumn.One,
-				{
-					retainContextWhenHidden: true,
-					enableScripts: true,
-					localResourceRoots: [
-						vscode.Uri.file(_path.join(context.extensionPath, 'media')) //
-					]
-				}
+  if (IJEConfiguration.FOLDERS) {
+    let myStatusBarItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+    myStatusBarItem.command = "i18n-json-editor";
+    myStatusBarItem.text = `$(symbol-string) i18n editor`;
+    myStatusBarItem.show();
+  }
 
-			);
-
-			const manager = new IJEManager(context, vscode.workspace.getConfiguration(), panel, uri.fsPath);
-
-		})
-	);
+  context.subscriptions.push(IJEEditorProvider.register(context));
 }

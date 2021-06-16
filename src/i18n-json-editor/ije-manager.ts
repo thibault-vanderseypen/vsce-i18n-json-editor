@@ -4,17 +4,23 @@ import * as _path from 'path';
 
 import { IJEData } from './ije-data';
 import { IJEDataTranslation } from './models/ije-data-translation';
+import { IJEConfiguration } from './ije-configuration';
 
 export class IJEManager {
 
+    get isWorkspace() {
+        return this.folderPath === null;
+    }
+
     private _data: IJEData;
 
-    constructor(private _context: vscode.ExtensionContext, private _configuration: vscode.WorkspaceConfiguration, private _panel: vscode.WebviewPanel, public dirPath: string) {
-        const forceKeyUppercase = _configuration.get<boolean>('i18nJsonEditor.forceKeyUPPERCASE');
-        this._data = new IJEData(this, forceKeyUppercase != undefined ? forceKeyUppercase : true);
+    constructor(private _context: vscode.ExtensionContext, private _panel: vscode.WebviewPanel, public folderPath: string) {
+        this._data = new IJEData(this);
         this._initEvents();
+        this._initTemplate();
         _panel.webview.html = this.getTemplate();
     }
+
 
     _initEvents() {
         this._panel.webview.onDidReceiveMessage(
@@ -26,14 +32,23 @@ export class IJEManager {
                     case 'pageSize': this._data.pageSize(+message.value); return;
                     case 'refresh': this.refreshDataTable(); return;
                     case 'remove': this._data.remove(message.id); return;
-                    case 'save': this._data.save(); vscode.window.showInformationMessage('i18n files saved'); return;
+                    case 'save': this._data.save(); return;
+                    case 'filterFolder': this._data.filterFolder(message.value); return;
                     case 'search': this._data.search(message.value); return;
                     case 'select': this._data.select(message.id); return;
                     case 'sort': this._data.sort(message.column, message.ascending); return;
                     case 'switch-view': this._data.switchView(message.view); return;
                     case 'update': this._data.update(message.id, message.value, message.language); return;
+                    case 'folder': this._data.changeFolder(message.id, message.value); return;
                 }
             });
+    }
+
+
+    _initTemplate() {
+        if (this.isWorkspace) {
+            this._panel.webview.postMessage({ command: 'folders', folders: IJEConfiguration.FOLDERS });
+        }
     }
 
     refreshDataTable() {
@@ -43,6 +58,7 @@ export class IJEManager {
     updateTranslation(translation: IJEDataTranslation) {
         this._panel.webview.postMessage({ command: 'update', translation: translation });
     }
+
 
     getTemplate(): string {
         const template = vscode.Uri.file(_path.join(this._context.extensionPath, 'media', 'template.html'));

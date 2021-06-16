@@ -1,74 +1,92 @@
 {
-	"name": "i18n-json-editor",
-	"displayName": "i18n json editor",
-	"author": {
-		"name": "Thibault Vanderseypen",
-		"url": "https://vanderseypen.dev"
-	},
-	"publisher": "thibault-vanderseypen",
-	"repository": {
-		"url": "https://github.com/thibault-vanderseypen/vsce-i18n-json-editor.git"
-	},
-	"description": "Easily edit your i18n json files",
-	"version": "1.1.2",
-	"engines": {
-		"vscode": "^1.30.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:i18n-json-editor"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "i18n-json-editor",
-				"title": "i18n json editor"
-			}
-		],
-		"menus": {
-			"explorer/context": [
-				{
-					"command": "i18n-json-editor",
-					"group": "2_workspace",
-					"when": "explorerResourceIsFolder && resourceFilename =~ /i18n/"
-				}
-			]
-		},
-		"configuration": {
-			"title": "i18n json editor",
-			"properties": {
-			  "i18nJsonEditor.forceKeyUPPERCASE": {
-					"default": true,
-					"type": "boolean",
-					"description": "Force the keys to uppercase"
-			
-			  }
-			}
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.30.0",
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^7.0.2",
-		"@types/node": "^13.11.0",
-		"eslint": "^6.8.0",
-		"@typescript-eslint/parser": "^2.30.0",
-		"@typescript-eslint/eslint-plugin": "^2.30.0",
-		"glob": "^7.1.6",
-		"mocha": "^7.1.2",
-		"typescript": "^3.8.3",
-		"vscode-test": "^1.3.0"
-	},
-	"dependencies": {}
+  "name": "i18n-json-editor",
+  "displayName": "i18n json editor",
+  "author": {
+    "name": "Thibault Vanderseypen",
+    "url": "https://vanderseypen.dev"
+  },
+  "publisher": "thibault-vanderseypen",
+  "repository": {
+    "url": "https://github.com/thibault-vanderseypen/vsce-i18n-json-editor.git"
+  },
+  "description": "Easily edit your i18n json files",
+  "icon": "media/logo.png",
+  "version": "2.0.2",
+  "engines": {
+    "vscode": "^1.30.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*",
+    "onCommand:i18n-json-editor"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "i18n-json-editor",
+        "title": "i18n json editor"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "i18n-json-editor",
+          "group": "2_workspace",
+          "when": "explorerResourceIsFolder && resourceFilename in ext:supportedFolders"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "i18n json editor",
+      "properties": {
+        "i18nJsonEditor.forceKeyUPPERCASE": {
+          "default": true,
+          "type": "boolean",
+          "description": "Force the keys to uppercase"
+        },
+        "i18nJsonEditor.jsonSpace": {
+          "default": 2,
+          "type": [
+            "string",
+            "number"
+          ],
+          "description": "A String or Number that's used to insert white space into the output JSON"
+        },
+        "i18nJsonEditor.supportedFolders": {
+          "default": ["i18n"],
+          "type": "array",
+          "description": "An array of folder names that's used to open the extension through the right click (restart required after changing the value)"
+        },
+        "i18nJsonEditor.workspaceFolders": {
+          "type": "array",
+          "description": "An array of objects to specify which folders are used to manage your translations"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.30.0",
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.0",
+    "eslint": "^6.8.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "glob": "^7.1.6",
+    "mocha": "^7.1.2",
+    "typescript": "^3.8.3",
+    "vscode-test": "^1.3.0"
+  },
+  "dependencies": {}
 }
