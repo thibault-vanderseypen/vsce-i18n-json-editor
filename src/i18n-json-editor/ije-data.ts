@@ -65,6 +65,14 @@ export class IJEData {
     }
   }
 
+  private _stripBOM(content: string): string{
+    if(!content.startsWith("\uFEFF")){
+      return content;
+    }
+    
+    return content.replace("\uFEFF", '');  
+  }
+
   private _loadFolder(folderPath: string) {
     const files = fs.readdirSync(folderPath);
 
@@ -80,7 +88,8 @@ export class IJEData {
 
         try {
           let rawdata = fs.readFileSync(_path.join(folderPath, file));
-          let content = JSON.parse(rawdata.toString());
+          let jsonData = this._stripBOM(rawdata.toString());
+          let content = JSON.parse(jsonData);
 
           let keysValues = this._getKeysValues(content);
 
