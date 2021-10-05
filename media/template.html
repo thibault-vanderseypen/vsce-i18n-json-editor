@@ -11,11 +11,11 @@
 
 <body>
     <nav class="navbar navbar-light ">
-        <form class="form-inline  mr-auto">
+        <form class="form-inline  mr-auto" onsubmit="return false;">
             <select id="select-folder" class="form-control mr-2" style="display: none;" onchange="filterFolder(this)">
                 <option value='*'>*</option>
            </select>            
-            <input class="form-control" style="width:400px" oninput="search(this)" type="search" placeholder="Search..." aria-label="Search...">
+            <input class="form-control" style="width:400px" oninput="search(this)" type="text" placeholder="Search..." aria-label="Search...">
 
         </form>
         <form class="form-inline">
