@@ -76,14 +76,14 @@ export class IJEDataRenderUtil {
         render += `<td><select id="select-folder-${t.id}" class="form-control" onchange="updateFolder(this,${t.id})">`;
         const folders = IJEConfiguration.FOLDERS;
         folders.forEach((d) => {
-          render += `<option value='${d.path}' ${d.path === t.folder ? "selected" : ""}>${d.name}</option>`;
+          render += `<option value='${d.path.replace(/"/g, "&quot;")}' ${d.path === t.folder ? "selected" : ""}>${d.name}</option>`;
         });
         render += " </select></td>";
       }
 
       render += `
                 <td>
-                    <input id="input-key-${t.id}" class="form-control ${t.valid ? "" : "is-invalid"}" type="text" placeholder="Key..." value="${t.key}" onfocus="mark(${
+                    <input id="input-key-${t.id}" class="form-control ${t.valid ? "" : "is-invalid"}" type="text" placeholder="Key..." value="${t.key.replace(/"/g, "&quot;")}" onfocus="mark(${
         t.id
       })" onchange="updateInput(this,${t.id});" />
                     <div id="input-key-${t.id}-feedback" class="invalid-feedback error-vscode">${t.error}</div>
@@ -94,7 +94,7 @@ export class IJEDataRenderUtil {
         render += "<td>";
         render += `<input class="form-control" type="text" placeholder="Translation..." onfocus="mark(${t.id})" onchange="updateInput(this,${t.id},'${language}');" `;
         if (t.languages[language]) {
-          render += `value="${t.languages[language].replace(/\n/g, "\\n")}" `;
+          render += `value="${t.languages[language].replace(/\n/g, "\\n").replace(/"/g, "&quot;")}" `;
         }
         render += "/>";
         render += "</td>";
