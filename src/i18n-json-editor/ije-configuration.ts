@@ -34,4 +34,9 @@ export class IJEConfiguration {
 
     return _folders !== undefined ? _folders : [];
   }
+
+  static get KEY_SEPARATOR(): string | false {
+    const value = vscode.workspace.getConfiguration().get<string | boolean>("i18nJsonEditor.keySeparator");
+    return (value !== undefined && value !== true) ? value : ".";
+  }
 }
