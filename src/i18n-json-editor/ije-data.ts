@@ -281,7 +281,7 @@ export class IJEData {
   }
 
   private _transformKeysValues(key: string, value: string, o = {}) {
-    let dot = key.indexOf(".");
+    let dot = IJEConfiguration.KEY_SEPARATOR ? key.indexOf(IJEConfiguration.KEY_SEPARATOR) : -1
     if (dot > 0) {
       const _key = key.substring(0, dot);
       if (!o[_key]) {
@@ -297,7 +297,7 @@ export class IJEData {
     let kv: any = {};
     for (let key in obj) {
       if (typeof obj[key] !== "string") {
-        kv = { ...kv, ...this._getKeysValues(obj[key], _key + key + ".") };
+        kv = { ...kv, ...this._getKeysValues(obj[key], _key + key + (IJEConfiguration.KEY_SEPARATOR || "")) };
       } else {
         kv[_key + key] = obj[key];
       }
@@ -336,7 +336,7 @@ export class IJEData {
     const impacted = this._validatePath(translation, false, key);
 
     impacted.forEach((i) => {
-      if (key === undefined || (!this._comparePath(translation.key.split("."), i.key.split(".")) && this._validatePath(i, true).length === 0)) {
+      if (key === undefined || (!this._comparePath(this._split(translation.key), this._split(i.key)) && this._validatePath(i, true).length === 0)) {
         i.valid = true;
         i.error = "";
         this._manager.updateTranslation(i);
@@ -363,14 +363,19 @@ export class IJEData {
     }
   }
 
+  private _split (key: string) {
+    if(IJEConfiguration.KEY_SEPARATOR) return key.split(IJEConfiguration.KEY_SEPARATOR)
+    return [key]
+  }
+
   private _validatePath(translation: IJEDataTranslation, valid: boolean = true, key: string = undefined) {
-    const splitKey = (key !== undefined ? key : translation.key).split(".");
+    const splitKey = this._split(key !== undefined ? key : translation.key);
 
     return this._translations.filter((t) => {
       if (translation.id === t.id || translation.folder !== t.folder || t.valid !== valid) {
         return false;
       }
-      return this._comparePath(splitKey, t.key.split("."));
+      return this._comparePath(splitKey, this._split(t.key));
     });
   }
 

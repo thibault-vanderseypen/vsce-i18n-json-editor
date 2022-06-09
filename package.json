@@ -63,6 +63,14 @@
         "i18nJsonEditor.workspaceFolders": {
           "type": "array",
           "description": "An array of objects to specify which folders are used to manage your translations"
+        },
+        "i18nJsonEditor.keySeparator": {
+          "default": ".",
+          "type": [
+            "string",
+            "boolean"
+          ],
+          "description": "string to separate keys, or false if no separator is preferred"
         }
       }
     }
