@@ -65,5 +65,6 @@ switchView = () => {
   });
 };
 updateInput = (el, id, language = "") => vscode.postMessage({ command: "update", id: id, value: el.value, language: language });
+translateInput = (el, id, language = "") => vscode.postMessage({ command: "translate", id: id, language: language });
 updateFolder = (el, id) => vscode.postMessage({ command: "folder", id: id, value: el.value });
 

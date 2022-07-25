@@ -1,5 +1,6 @@
 {
   "i18nJsonEditor.jsonSpace": 5,
+  "i18nJsonEditor.lineEnding": "\r\n",
   "i18nJsonEditor.supportedFolders": [
     "i18n",
     "locales"
@@ -8,5 +9,4 @@
     { "name": "Common", "path": "./i18n" },
     { "name": "Portal", "path": "./portal/locales" }
   ]
-  
 }

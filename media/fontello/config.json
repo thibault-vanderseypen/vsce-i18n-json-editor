@@ -47,6 +47,12 @@
       "css": "list-bullet",
       "code": 61642,
       "src": "fontawesome"
+    },
+    {
+      "uid": "ddecf5ad7935e3fb1b70dac6ed00d06a",
+      "css": "language",
+      "code": 59392,
+      "src": "entypo"
     }
   ]
 }
