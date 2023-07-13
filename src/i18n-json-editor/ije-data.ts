@@ -139,12 +139,22 @@ export class IJEData {
             existingFolders = IJEConfiguration.WORKSPACE_FOLDERS.map(d => d.path);
         }
 
+        let existingExtensions = IJEConfiguration.SUPPORTED_EXTENSIONS;
+
         existingFolders.forEach(d => {
             this._languages.forEach(language => {
                 const json = JSON.stringify({}, null, IJEConfiguration.JSON_SPACE);
-                // TODO added code to check what extension to use
-                const f = vscode.Uri.file(_path.join(d, language + '.json')).fsPath;
-                //if fs.existsSync(f)
+                var f = null;
+                existingExtensions.forEach((ext: string) => {
+                    var s = vscode.Uri.file(_path.join(d, language + '.' + ext)).fsPath;
+                    if (fs.existsSync(s)) {
+                        f = s;
+                        return;
+                    };
+                });
+                if (f === null) {
+                    f = vscode.Uri.file(_path.join(d, language + '.' + existingExtensions[0])).fsPath;
+                }
                 fs.writeFileSync(f, json);
             });
         });
@@ -172,8 +182,17 @@ export class IJEData {
 
                 var json = JSON.stringify(o, null, IJEConfiguration.JSON_SPACE);
                 json = json.replace(/\n/g, IJEConfiguration.LINE_ENDING);
-                // TODO added code to check what extension to use
-                const f = vscode.Uri.file(_path.join(key, language + '.json')).fsPath;
+                var f = null;
+                existingExtensions.forEach((ext: string) => {
+                    var s = vscode.Uri.file(_path.join(key, language + '.' + ext)).fsPath;
+                    if (fs.existsSync(s)) {
+                        f = s;
+                        return;
+                    };
+                });
+                if (f === null) {
+                    f = vscode.Uri.file(_path.join(key, language + '.' + existingExtensions[0])).fsPath;
+                }
                 fs.writeFileSync(f, json);
             });
         });
