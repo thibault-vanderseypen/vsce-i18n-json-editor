@@ -5,6 +5,10 @@
     "i18n",
     "locales"
   ],
+  "i18nJsonEditor.supportedExtensions": [
+    "arb",
+    "json"
+  ],
   "i18nJsonEditor.workspaceFolders": [
     { "name": "Common", "path": "./i18n" },
     { "name": "Portal", "path": "./portal/locales" }
