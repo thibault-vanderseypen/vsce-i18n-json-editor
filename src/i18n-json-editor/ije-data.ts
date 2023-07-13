@@ -138,10 +138,13 @@ export class IJEData {
         } else {
             existingFolders = IJEConfiguration.WORKSPACE_FOLDERS.map(d => d.path);
         }
+
         existingFolders.forEach(d => {
             this._languages.forEach(language => {
                 const json = JSON.stringify({}, null, IJEConfiguration.JSON_SPACE);
+                // TODO added code to check what extension to use
                 const f = vscode.Uri.file(_path.join(d, language + '.json')).fsPath;
+                //if fs.existsSync(f)
                 fs.writeFileSync(f, json);
             });
         });
@@ -169,6 +172,7 @@ export class IJEData {
 
                 var json = JSON.stringify(o, null, IJEConfiguration.JSON_SPACE);
                 json = json.replace(/\n/g, IJEConfiguration.LINE_ENDING);
+                // TODO added code to check what extension to use
                 const f = vscode.Uri.file(_path.join(key, language + '.json')).fsPath;
                 fs.writeFileSync(f, json);
             });
@@ -270,10 +274,16 @@ export class IJEData {
     private _loadFolder(folderPath: string) {
         const files = fs.readdirSync(folderPath);
 
+        let existingExtensions = IJEConfiguration.SUPPORTED_EXTENSIONS;
+
+        existingExtensions = existingExtensions;
+
         const translate: any = {};
         const keys: string[] = [];
-        files
-            .filter(f => f.endsWith('.json'))
+
+        existingExtensions.forEach((ext: string) => {
+            files
+            .filter(f => f.endsWith("." + ext))
             .forEach((file: string) => {
                 var language = file.split('.')[0];
                 if (this._languages.indexOf(language) === -1) {
@@ -297,6 +307,8 @@ export class IJEData {
                     translate[language] = {};
                 }
             });
+
+        });
 
         keys.forEach((key: string) => {
             const languages: any = {};

@@ -28,7 +28,11 @@ export class IJEConfiguration {
 
     static get SUPPORTED_FOLDERS(): string[] {
         const value = vscode.workspace.getConfiguration().get<string[]>('i18nJsonEditor.supportedFolders');
-        return value !== undefined ? value : ['i18n'];
+        return value !== undefined ? value : ['i18n','l10n'];
+    }
+    static get SUPPORTED_EXTENSIONS(): string[] {
+        const value = vscode.workspace.getConfiguration().get<string[]>('i18nJsonEditor.supportedExtensions');
+        return value !== undefined ? value : ['arb','json'];
     }
     static get TRANSLATION_SERVICE(): TranslationServiceEnum {
         const value = vscode.workspace.getConfiguration().get<TranslationServiceEnum>('i18nJsonEditor.translationService');
@@ -47,6 +51,20 @@ export class IJEConfiguration {
         const _folders: IJEFolder[] = [];
         folders.forEach(d => {
             var path = vscode.Uri.file(_path.join(workspaceFolder.uri.fsPath, d.path)).fsPath;
+            if (fs.existsSync(path)) {
+                _folders.push({ name: d.name, path: path });
+            }
+        });
+
+        return _folders !== undefined ? _folders : [];
+    }
+    static get WORKSPACE_EXTENSIONS(): IJEFolder[] {
+        const extensions = vscode.workspace.getConfiguration().get<IJEFolder[]>('i18nJsonEditor.workspaceExtensions');
+        let workspaceExtension: vscode.WorkspaceFolder | undefined = vscode.workspace.workspaceExtensions[0];
+
+        const _folders: IJEFolder[] = [];
+        extensions.forEach(d => {
+            var path = vscode.Uri.file(_path.join(workspaceExtension.uri.fsPath, d.path)).fsPath;
             if (fs.existsSync(path)) {
                 _folders.push({ name: d.name, path: path });
             }
