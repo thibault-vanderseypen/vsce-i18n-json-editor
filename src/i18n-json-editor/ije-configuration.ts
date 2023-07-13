@@ -11,9 +11,14 @@ export class IJEConfiguration {
         return value !== undefined ? value : true;
     }
 
+    static get SORT_KEY_TOGETHER(): boolean {
+        const value = vscode.workspace.getConfiguration().get<boolean>('i18nJsonEditor.sortKeyTogether');
+        return value !== undefined ? value : true;
+    }
+
     static get JSON_SPACE(): string | number {
         const value = vscode.workspace.getConfiguration().get<string | number>('i18nJsonEditor.jsonSpace');
-        return value !== undefined ? value : 2;
+        return value !== undefined ? value : 4;
     }
 
     static get KEY_SEPARATOR(): string | false {

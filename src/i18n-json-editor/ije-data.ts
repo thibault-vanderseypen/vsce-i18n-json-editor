@@ -150,7 +150,7 @@ export class IJEData {
                     if (fs.existsSync(s)) {
                         f = s;
                         return;
-                    };
+                    }
                 });
                 if (f === null) {
                     f = vscode.Uri.file(_path.join(d, language + '.' + existingExtensions[0])).fsPath;
@@ -166,36 +166,87 @@ export class IJEData {
             return r;
         }, {});
 
-        Object.entries(folders).forEach(entry => {
-            const [key, value] = entry;
-            this._languages.forEach(language => {
-                let o = {};
+        // TODO revisit this to pass in the different sort code and no duplicate it
+        if (!IJEConfiguration.SORT_KEY_TOGETHER) {
+            Object.entries(folders).forEach(entry => {
+                const [key, value] = entry;
+                this._languages.forEach(language => {
+                    let o = {};
+                    value
+                        .filter(translation => translation.valid)
+                        .sort((a, b) => (a.key > b.key ? 1 : -1))
+                        .forEach(translation => {
+                            if (translation.languages[language]) {
+                                this._transformKeysValues(translation.key, translation.languages[language], o);
+                            }
+                        });
 
-                value
-                    .filter(translation => translation.valid)
-                    .sort((a, b) => (a.key > b.key ? 1 : -1))
-                    .forEach(translation => {
-                        if (translation.languages[language]) {
-                            this._transformKeysValues(translation.key, translation.languages[language], o);
+                    var json = JSON.stringify(o, null, IJEConfiguration.JSON_SPACE);
+                    json = json.replace(/\n/g, IJEConfiguration.LINE_ENDING);
+                    var f = null;
+                    existingExtensions.forEach((ext: string) => {
+                        var s = vscode.Uri.file(_path.join(key, language + '.' + ext)).fsPath;
+                        if (fs.existsSync(s)) {
+                            f = s;
+                            return;
                         }
                     });
-
-                var json = JSON.stringify(o, null, IJEConfiguration.JSON_SPACE);
-                json = json.replace(/\n/g, IJEConfiguration.LINE_ENDING);
-                var f = null;
-                existingExtensions.forEach((ext: string) => {
-                    var s = vscode.Uri.file(_path.join(key, language + '.' + ext)).fsPath;
-                    if (fs.existsSync(s)) {
-                        f = s;
-                        return;
-                    };
+                    if (f === null) {
+                        f = vscode.Uri.file(_path.join(key, language + '.' + existingExtensions[0])).fsPath;
+                    }
+                    fs.writeFileSync(f, json);
                 });
-                if (f === null) {
-                    f = vscode.Uri.file(_path.join(key, language + '.' + existingExtensions[0])).fsPath;
-                }
-                fs.writeFileSync(f, json);
             });
-        });
+        } else {
+            Object.entries(folders).forEach(entry => {
+                const [key, value] = entry;
+                this._languages.forEach(language => {
+                    let o = {};
+
+                    value
+                        .filter(translation => translation.valid)
+                        .sort((a, b) => {
+                            if (a.key === '@@locale') {
+                                return -1;
+                            }
+                            if (b.key === '@@locale') {
+                                return 1;
+                            }
+                            const compared = String(a.key.replace('@', '')).localeCompare(b.key.replace('@', ''));
+                            if (compared === 0) {
+                                if (a.key.startsWith('@')) {
+                                    return 1;
+                                }
+                                if (b.key.startsWith('@')) {
+                                    return -1;
+                                }
+                            }
+
+                            return compared;
+                        })
+                        .forEach(translation => {
+                            if (translation.languages[language]) {
+                                this._transformKeysValues(translation.key, translation.languages[language], o);
+                            }
+                        });
+
+                    var json = JSON.stringify(o, null, IJEConfiguration.JSON_SPACE);
+                    json = json.replace(/\n/g, IJEConfiguration.LINE_ENDING);
+                    var f = null;
+                    existingExtensions.forEach((ext: string) => {
+                        var s = vscode.Uri.file(_path.join(key, language + '.' + ext)).fsPath;
+                        if (fs.existsSync(s)) {
+                            f = s;
+                            return;
+                        }
+                    });
+                    if (f === null) {
+                        f = vscode.Uri.file(_path.join(key, language + '.' + existingExtensions[0])).fsPath;
+                    }
+                    fs.writeFileSync(f, json);
+                });
+            });
+        }
         vscode.window.showInformationMessage('i18n files saved');
     }
 
@@ -302,31 +353,30 @@ export class IJEData {
 
         existingExtensions.forEach((ext: string) => {
             files
-            .filter(f => f.endsWith("." + ext))
-            .forEach((file: string) => {
-                var language = file.split('.')[0];
-                if (this._languages.indexOf(language) === -1) {
-                    this._languages.push(language);
-                }
-
-                try {
-                    let rawdata = fs.readFileSync(_path.join(folderPath, file));
-                    let jsonData = this._stripBOM(rawdata.toString());
-                    let content = JSON.parse(jsonData);
-
-                    let keysValues = this._getKeysValues(content);
-
-                    for (let key in keysValues) {
-                        if (keys.indexOf(key) === -1) {
-                            keys.push(key);
-                        }
+                .filter(f => f.endsWith('.' + ext))
+                .forEach((file: string) => {
+                    var language = file.split('.')[0];
+                    if (this._languages.indexOf(language) === -1) {
+                        this._languages.push(language);
                     }
-                    translate[language] = keysValues;
-                } catch (e) {
-                    translate[language] = {};
-                }
-            });
 
+                    try {
+                        let rawdata = fs.readFileSync(_path.join(folderPath, file));
+                        let jsonData = this._stripBOM(rawdata.toString());
+                        let content = JSON.parse(jsonData);
+
+                        let keysValues = this._getKeysValues(content);
+
+                        for (let key in keysValues) {
+                            if (keys.indexOf(key) === -1) {
+                                keys.push(key);
+                            }
+                        }
+                        translate[language] = keysValues;
+                    } catch (e) {
+                        translate[language] = {};
+                    }
+                });
         });
 
         keys.forEach((key: string) => {
@@ -518,3 +568,4 @@ export class IJEData {
         return content.replace('\uFEFF', '');
     }
 }
+
