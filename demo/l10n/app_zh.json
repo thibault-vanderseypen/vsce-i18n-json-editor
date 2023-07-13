@@ -1,0 +1,372 @@
+{
+    "@@local": "zh_CH",
+    "@account": {
+        "description": "Account screen delete button"
+    },
+    "@accountDelete": {
+        "description": "Account screen Delete button"
+    },
+    "@accountTeam": {
+        "description": "Account menu and screen name"
+    },
+    "@accountToDo": {
+        "description": "Account menu and screen name"
+    },
+    "@cancel": {
+        "description": "Used in Alerts to cancel action"
+    },
+    "@colorSelectTitle1": {
+        "description": "Title for selecting background color"
+    },
+    "@colorSelectTitle2": {
+        "description": "Title for creating a custom background color"
+    },
+    "@confirm": {
+        "description": "Used on login and create account screens"
+    },
+    "@createAccount": {
+        "description": "Used on login and create account screens"
+    },
+    "@description": {
+        "description": "Used on login and create account screens"
+    },
+    "@doNotShow": {
+        "description": "Alert Dialog to stop showing multiple times"
+    },
+    "@email": {
+        "description": "Used on the login and create account screens"
+    },
+    "@endDate": {
+        "description": "Used on login and create account screens"
+    },
+    "@homeAddMsg": {
+        "description": "Alert Dialog for when you need to upgrade for teams"
+    },
+    "@homeAddTitle": {
+        "description": "Alert Dialog for when you need to upgrade for teams"
+    },
+    "@homeAddToDo": {
+        "description": "Add button on home screen"
+    },
+    "@homeFilter": {
+        "description": "Filter button on home screen"
+    },
+    "@homeTeamMsg": {
+        "description": "Alert Dialog for when you need to upgrade for teams"
+    },
+    "@homeTeamTitle": {
+        "description": "Alert Dialog for when you need to upgrade for teams"
+    },
+    "@loading": {
+        "description": "Used on the loading screen"
+    },
+    "@login": {
+        "description": "Login screen Button"
+    },
+    "@logout": {
+        "description": "Login screen Button"
+    },
+    "@mobile": {
+        "description": "Used on create account screens"
+    },
+    "@mobileOptional": {
+        "description": "Used on create account screens"
+    },
+    "@name": {
+        "description": "Used on login and create account screens"
+    },
+    "@nameOptional": {
+        "description": "Used on create account screens"
+    },
+    "@networkMsg1": {
+        "description": "Alert Dialog for Network Issues"
+    },
+    "@networkMsg2": {
+        "description": "Alert Dialog for Network Issues"
+    },
+    "@networkTitle": {
+        "description": "Alert Dialog for Network Issues"
+    },
+    "@ok": {
+        "description": "Used in Alerts to approve action"
+    },
+    "@password": {
+        "description": "Used on login and create account screens"
+    },
+    "@signInMsg": {
+        "description": "Alert Dialog for Sign In"
+    },
+    "@signInNetwork": {
+        "description": "Alert Dialog for Network Issues"
+    },
+    "@signInTitle": {
+        "description": "Alert Dialog for Sign In"
+    },
+    "@signInVerifiedMsg1": {
+        "description": "Alert Dialog for Signin Account"
+    },
+    "@signInVerifiedTitle": {
+        "description": "Alert Dialog for Signin Account"
+    },
+    "@signUpMsgBad": {
+        "description": "Alert Dialog for Sign In"
+    },
+    "@signUpMsgEmail": {
+        "description": "Alert Dialog for Sign In"
+    },
+    "@signUpMsgUsed": {
+        "description": "Alert Dialog for Sign In"
+    },
+    "@signUpNetwork": {
+        "description": "Alert Dialog for Network Issues"
+    },
+    "@signUpOTP": {
+        "description": "Alert Dialog for Create Account"
+    },
+    "@signUpPasswordMsg1": {
+        "description": "Alert Dialog for Create Account"
+    },
+    "@signUpPasswordTitle": {
+        "description": "Alert Dialog for Create Account"
+    },
+    "@signUpPhoneMsg1": {
+        "description": "Alert Dialog for Create Account"
+    },
+    "@signUpPhoneTitle": {
+        "description": "Alert Dialog for Create Account"
+    },
+    "@signUpTitle": {
+        "description": "Alert Dialog for Sign In"
+    },
+    "@signUpVerify": {
+        "description": "Alert Dialog for Create Account"
+    },
+    "@startDate": {
+        "description": "Used on login and create account screens"
+    },
+    "@taskAdd": {
+        "description": "Add button on task screen"
+    },
+    "@taskAddMsg": {
+        "description": "Alert Dialog for when you need to upgrade for teams"
+    },
+    "@taskAddTitle": {
+        "description": "Alert Dialog for when you need to upgrade for teams"
+    },
+    "@taskCompleted": {
+        "description": "Used when a task is completed",
+        "placeholders": {
+            "completedDate": {
+                "example": "毫无",
+                "type": "String"
+            }
+        }
+    },
+    "@taskDelete": {
+        "description": "Delete button on task screen"
+    },
+    "@taskDeleteMsg": {
+        "description": "Alert Dialog for Deleting Task"
+    },
+    "@taskDeleteTitle": {
+        "description": "Alert Dialog for Deleting Task"
+    },
+    "@taskNone": {
+        "description": "Used when dates are NULL"
+    },
+    "@taskOwner": {
+        "description": "Used when a task is part of a team",
+        "placeholders": {
+            "owner": {
+                "example": "none",
+                "type": "String"
+            }
+        }
+    },
+    "@taskStartEnd": {
+        "description": "Used when a task has a start and/or end date",
+        "placeholders": {
+            "endDate": {
+                "example": "毫无",
+                "type": "String"
+            },
+            "startDate": {
+                "example": "毫无",
+                "type": "String"
+            }
+        }
+    },
+    "@teamAddMsg": {
+        "description": "for the dialog box to add a team member"
+    },
+    "@teamAddTitle": {
+        "description": "for the dialog box to add a team member"
+    },
+    "@teamDeleteMsg": {
+        "description": "Alert Dialog for Deleting Team"
+    },
+    "@teamDeleteTitle": {
+        "description": "Alert Dialog for Deleting Team"
+    },
+    "@teamMembersMsg": {
+        "description": "Column heading in Teams List"
+    },
+    "@teamMembersTitle": {
+        "description": "Column heading in Teams List"
+    },
+    "@teamOwnerMsg": {
+        "description": "Alert Dialog for Deleting Task"
+    },
+    "@teamOwnerRemoveMsg": {
+        "description": "Alert Dialog for Deleting Task"
+    },
+    "@teamOwnerRemoveTitle": {
+        "description": "Alert Dialog for Deleting Task"
+    },
+    "@teamOwnerTitle": {
+        "description": "Alert Dialog for Deleting Task"
+    },
+    "@teamRemoveMsg": {
+        "description": "Alert Dialog for Deleting Task"
+    },
+    "@teamRemoveTitle": {
+        "description": "Alert Dialog for Deleting Task"
+    },
+    "@teamTeamMsg": {
+        "description": "Column heading in Teams List"
+    },
+    "@teamTeamTitle": {
+        "description": "Column heading in Teams List"
+    },
+    "@teamlistMembers": {
+        "description": "Column heading in Teams List"
+    },
+    "@teamlistOwner": {
+        "description": "Column heading in Teams List"
+    },
+    "@teamlistTeam": {
+        "description": "Column heading in Teams List"
+    },
+    "@teamlistTeams": {
+        "description": "Title of Teams List"
+    },
+    "@toDoDeleteMsg": {
+        "description": "Alert Dialog for Deleting ToDo"
+    },
+    "@toDoDeleteTitle": {
+        "description": "Alert Dialog for Deleting ToDo"
+    },
+    "@todoAdd": {
+        "description": "Add button on todo screen"
+    },
+    "@todoBackground": {
+        "description": "Colour button on todo screen"
+    },
+    "@todoDelete": {
+        "description": "Delete button on todo screen"
+    },
+    "@upgradeButton": {
+        "description": "Title of Upgrade Screen"
+    },
+    "@upgradeTitle": {
+        "description": "Title of Upgrade Screen"
+    },
+    "account": "帐户",
+    "accountDelete": "删除帐户",
+    "accountTeam": "团队通知",
+    "accountToDo": "团队通知",
+    "appName": "Platform ToDo",
+    "cancel": "取消",
+    "colorSelectTitle1": "背景颜色选择",
+    "colorSelectTitle2": "自定义背景颜色",
+    "confirm": "确认密码",
+    "createAccount": "立即注册",
+    "description": "描述",
+    "doNotShow": "不再显示",
+    "email": "电子邮件",
+    "endDate": "结束日期",
+    "homeAddMsg": "免费版只能有 5 个待办事项列表. 你想升级吗?",
+    "homeAddTitle": "需要升级",
+    "homeAddToDo": "添加新的待办事项列表",
+    "homeFilter": "过滤器列表",
+    "homeTeamMsg": "免费版不能使用团队. 你想升级吗?",
+    "homeTeamTitle": "需要升级",
+    "loading": "Platform ToDo 加载中...",
+    "loadingStages1": "你的帐户",
+    "loadingStages2": "你的团队",
+    "loadingStages3": "你的任务",
+    "loadingStages4": "团队任务",
+    "loadingStages5": "完毕...",
+    "login": "登录到您的帐户",
+    "logout": "登出",
+    "mobile": "手机",
+    "mobileOptional": "手机 (选修的)",
+    "name": "姓名",
+    "nameOptional": "姓名 (选修的)",
+    "networkMsg1": "您的设备存在网络问题.",
+    "networkMsg2": "请检查您的网络，然后重新启动应用程序.",
+    "networkTitle": "网络问题 Issues",
+    "ok": "可以",
+    "password": "密码",
+    "profile": "Profile",
+    "signInMsg": "电子邮件和/或密码不正确. 请再试一次.",
+    "signInNetwork": "网络问题. 请检查您的网络，然后重试..",
+    "signInTitle": "登录错误",
+    "signInVerifiedMsg1": "您的电子邮件尚未经过验证. 您想再次发送验证邮件吗?",
+    "signInVerifiedTitle": "需要验证电子邮件",
+    "signUpMsgBad": "电子邮件地址格式错误.",
+    "signUpMsgEmail": "提供的密码太弱。 它必须至少为 8 个字符.",
+    "signUpMsgUsed": "该电子邮件的帐户已存在. 请尝试使用不同的电子邮件地址，或登录.",
+    "signUpNetwork": "网络问题。 请检查您的网络，然后重试。",
+    "signUpOTP": "输入您的一次性密码",
+    "signUpPasswordMsg1": "您的密码不匹配. 请再试一次.",
+    "signUpPasswordTitle": "密码不匹配",
+    "signUpPhoneMsg1": "目前无法验证您的手机. 请稍后编辑您的个人资料以添加手机号码.",
+    "signUpPhoneTitle": "手机验证失败",
+    "signUpTitle": "注册错误",
+    "signUpVerify": "校验",
+    "startDate": "开始日期",
+    "taskAdd": "添加新的子任务",
+    "taskAddMsg": "免费版不能有子任务. 你想升级吗?",
+    "taskAddTitle": "需要升级",
+    "taskCompleted": "完全的: {completedDate}",
+    "taskDelete": "D删除这个任务",
+    "taskDeleteMsg": "您确定要删除此任务及其所有子任务吗?",
+    "taskDeleteTitle": "删除此任务",
+    "taskNone": "毫无",
+    "taskOwner": "Owner: {owner}",
+    "taskStartEnd": "开始 {startDate} - 结尾 {endDate}",
+    "teamAddMsg": "输入您要邀请的团队成员的电子邮件地址",
+    "teamAddTitle": "邀请会员",
+    "teamDeleteMsg": "您确定要删除该团队吗? 任何未分配的任务都将分配给您.",
+    "teamDeleteTitle": "删除这个团队",
+    "teamMembersMsg": "此版本一个团队中只能有五个成员. 如果您需要有更多的成员和团队，请升级.",
+    "teamMembersTitle": "需要升级",
+    "teamOwnerMsg": "只有团队的所有者可以删除它.",
+    "teamOwnerRemoveMsg": "只有团队所有者可以删除团队成员.",
+    "teamOwnerRemoveTitle": "无法删除团队成员",
+    "teamOwnerTitle": "无法删除",
+    "teamRemoveMsg": "您确定要删除该团队成员吗? 所有分配的任务都将分配给您.",
+    "teamRemoveTitle": "删除团队成员",
+    "teamTeamMsg": "这个版本只能有一个团队. 如果您需要拥有更多团队，请升级.",
+    "teamTeamTitle": "需要升级",
+    "teamlistMembers": "成员",
+    "teamlistOwner": "所有者",
+    "teamlistTeam": "团队",
+    "teamlistTeams": "团队",
+    "toDoDeleteMsg": "您确定要删除此待办事项列表及其所有任务吗?",
+    "toDoDeleteTitle": "删除待办事项列表",
+    "todoAdd": "添加新任务",
+    "todoBackground": "更改此待办事项的颜色",
+    "todoDelete": "删除这个待办事项",
+    "upgradeButton": "升级",
+    "upgradeProTeamUserMsg": "* 一次性付款\n* 团队可以包含子团队\n* 所有团队成员升级到团队版",
+    "upgradeProTeamUserTitle": "专业团队版",
+    "upgradeProUserMsg": "* 一次性付款\n* 无限待办事项列表\n* 一个团队最多五名成员\n* 无限子任务\n* 无广告",
+    "upgradeProUserTitle": "专业版",
+    "upgradeTeamUserMsg": "* 一次性付款\n* 无限团队，无限成员",
+    "upgradeTeamUserTitle": "团队版",
+    "upgradeTitle": "升级平台待办事项",
+    "upgradeUserMsg": "* 仅限于五个待办事项列表\n* 每个待办事项的任务数量不受限制\n* 无团队\n* 无子任务\n* 广告",
+    "upgradeUserTitle": "免费版"
+}

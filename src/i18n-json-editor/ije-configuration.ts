@@ -11,9 +11,14 @@ export class IJEConfiguration {
         return value !== undefined ? value : true;
     }
 
+    static get SORT_KEY_TOGETHER(): boolean {
+        const value = vscode.workspace.getConfiguration().get<boolean>('i18nJsonEditor.sortKeyTogether');
+        return value !== undefined ? value : true;
+    }
+
     static get JSON_SPACE(): string | number {
         const value = vscode.workspace.getConfiguration().get<string | number>('i18nJsonEditor.jsonSpace');
-        return value !== undefined ? value : 2;
+        return value !== undefined ? value : 4;
     }
 
     static get KEY_SEPARATOR(): string | false {
@@ -28,7 +33,11 @@ export class IJEConfiguration {
 
     static get SUPPORTED_FOLDERS(): string[] {
         const value = vscode.workspace.getConfiguration().get<string[]>('i18nJsonEditor.supportedFolders');
-        return value !== undefined ? value : ['i18n'];
+        return value !== undefined ? value : ['i18n','l10n'];
+    }
+    static get SUPPORTED_EXTENSIONS(): string[] {
+        const value = vscode.workspace.getConfiguration().get<string[]>('i18nJsonEditor.supportedExtensions');
+        return value !== undefined ? value : ['arb','json'];
     }
     static get TRANSLATION_SERVICE(): TranslationServiceEnum {
         const value = vscode.workspace.getConfiguration().get<TranslationServiceEnum>('i18nJsonEditor.translationService');

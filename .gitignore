@@ -1,4 +1,8 @@
 out
 node_modules
 .vscode-test/
+.history/
+.DS_Store
 *.vsix
+*.arb
+l10n/app_zh.json
