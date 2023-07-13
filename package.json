@@ -11,7 +11,7 @@
     },
     "description": "Easily edit your i18n json files",
     "icon": "media/logo.png",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "engines": {
         "vscode": "^1.30.0"
     },
@@ -76,6 +76,14 @@
                     ],
                     "type": "array",
                     "description": "An array of folder names that's used to open the extension through the right click (restart required after changing the value)"
+                },
+                "i18nJsonEditor.supportedExtensions": {
+                    "default": [
+                        "arb",
+                        "json"
+                    ],
+                    "type": "array",
+                    "description": "An array of file extension to check when loading the editor. if no file exists then the first one is used by default (restart required after changing the value)"
                 },
                 "i18nJsonEditor.translationService": {
                     "type": "string",

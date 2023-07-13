@@ -138,10 +138,23 @@ export class IJEData {
         } else {
             existingFolders = IJEConfiguration.WORKSPACE_FOLDERS.map(d => d.path);
         }
+
+        let existingExtensions = IJEConfiguration.SUPPORTED_EXTENSIONS;
+
         existingFolders.forEach(d => {
             this._languages.forEach(language => {
                 const json = JSON.stringify({}, null, IJEConfiguration.JSON_SPACE);
-                const f = vscode.Uri.file(_path.join(d, language + '.json')).fsPath;
+                var f = null;
+                existingExtensions.forEach((ext: string) => {
+                    var s = vscode.Uri.file(_path.join(d, language + '.' + ext)).fsPath;
+                    if (fs.existsSync(s)) {
+                        f = s;
+                        return;
+                    };
+                });
+                if (f === null) {
+                    f = vscode.Uri.file(_path.join(d, language + '.' + existingExtensions[0])).fsPath;
+                }
                 fs.writeFileSync(f, json);
             });
         });
@@ -169,7 +182,17 @@ export class IJEData {
 
                 var json = JSON.stringify(o, null, IJEConfiguration.JSON_SPACE);
                 json = json.replace(/\n/g, IJEConfiguration.LINE_ENDING);
-                const f = vscode.Uri.file(_path.join(key, language + '.json')).fsPath;
+                var f = null;
+                existingExtensions.forEach((ext: string) => {
+                    var s = vscode.Uri.file(_path.join(key, language + '.' + ext)).fsPath;
+                    if (fs.existsSync(s)) {
+                        f = s;
+                        return;
+                    };
+                });
+                if (f === null) {
+                    f = vscode.Uri.file(_path.join(key, language + '.' + existingExtensions[0])).fsPath;
+                }
                 fs.writeFileSync(f, json);
             });
         });
@@ -270,10 +293,16 @@ export class IJEData {
     private _loadFolder(folderPath: string) {
         const files = fs.readdirSync(folderPath);
 
+        let existingExtensions = IJEConfiguration.SUPPORTED_EXTENSIONS;
+
+        existingExtensions = existingExtensions;
+
         const translate: any = {};
         const keys: string[] = [];
-        files
-            .filter(f => f.endsWith('.json'))
+
+        existingExtensions.forEach((ext: string) => {
+            files
+            .filter(f => f.endsWith("." + ext))
             .forEach((file: string) => {
                 var language = file.split('.')[0];
                 if (this._languages.indexOf(language) === -1) {
@@ -297,6 +326,8 @@ export class IJEData {
                     translate[language] = {};
                 }
             });
+
+        });
 
         keys.forEach((key: string) => {
             const languages: any = {};

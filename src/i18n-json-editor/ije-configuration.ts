@@ -28,7 +28,11 @@ export class IJEConfiguration {
 
     static get SUPPORTED_FOLDERS(): string[] {
         const value = vscode.workspace.getConfiguration().get<string[]>('i18nJsonEditor.supportedFolders');
-        return value !== undefined ? value : ['i18n'];
+        return value !== undefined ? value : ['i18n','l10n'];
+    }
+    static get SUPPORTED_EXTENSIONS(): string[] {
+        const value = vscode.workspace.getConfiguration().get<string[]>('i18nJsonEditor.supportedExtensions');
+        return value !== undefined ? value : ['arb','json'];
     }
     static get TRANSLATION_SERVICE(): TranslationServiceEnum {
         const value = vscode.workspace.getConfiguration().get<TranslationServiceEnum>('i18nJsonEditor.translationService');
