@@ -58,18 +58,4 @@ export class IJEConfiguration {
 
         return _folders !== undefined ? _folders : [];
     }
-    static get WORKSPACE_EXTENSIONS(): IJEFolder[] {
-        const extensions = vscode.workspace.getConfiguration().get<IJEFolder[]>('i18nJsonEditor.workspaceExtensions');
-        let workspaceExtension: vscode.WorkspaceFolder | undefined = vscode.workspace.workspaceExtensions[0];
-
-        const _folders: IJEFolder[] = [];
-        extensions.forEach(d => {
-            var path = vscode.Uri.file(_path.join(workspaceExtension.uri.fsPath, d.path)).fsPath;
-            if (fs.existsSync(path)) {
-                _folders.push({ name: d.name, path: path });
-            }
-        });
-
-        return _folders !== undefined ? _folders : [];
-    }
 }
